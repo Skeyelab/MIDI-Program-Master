@@ -39,3 +39,7 @@ h1 {
 p {
     font-family: monospace;
 }
+
+#inputs_found {
+    font-family: monospace;
+}
