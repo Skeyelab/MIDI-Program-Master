@@ -4,6 +4,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="pm.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -13,9 +14,14 @@
 </head>
 <body>
 	<h1>Program Change Monitor</h1>
-	<p id="intro">
+	<p>
 		What is this?  This is a browser based MIDI Program Change monitor.  <br/>
-		It should display program change data for all available MIDI inputs in real time.  <br/><br/>
+		It should display program change data for all available MIDI inputs in real time.
+	</p>
+	<div id="inputs_found">
+		
+	</div>
+	<p>
 		It uses <a href="http://djipco.github.io/webmidi/latest/classes/WebMidi.html">WebMidi.js</a> and is running 100% in your browser. You can read the code on <a href="https://github.com/Skeyelab/MIDI-Program-Master">GitHub</a> if you like.
 	</p>
 	<div class="divTable">

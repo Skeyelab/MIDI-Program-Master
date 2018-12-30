@@ -19,6 +19,7 @@ var settings = {};
 	});
 	
 	function init() {
+        displayInputNames();
 		createListeners();
 		updateSettingsDisplay();
 	}
@@ -53,7 +54,18 @@ var settings = {};
 	}
 
 	
+    function displayInputNames() {
 
+        htmlStr = "MIDI Inputs found:<ul>";
+        
+        WebMidi.inputs.forEach(input => {
+            htmlStr = htmlStr + `<li>${input.name}</li>`;
+        });
+        htmlStr = htmlStr + "</ul>";
+        console.log(htmlStr);
+        $("#inputs_found").html(htmlStr);
+    }
+    
 		
 
 	function createListeners() {
