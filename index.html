@@ -12,7 +12,15 @@
 </head>
 <body>
 	<script type="text/javascript">
-//var settings = {channel: 1, values:{ 12bankselectcoarse:0, bankselectfine:0, pc:0}};
+	
+	var settings = {};
+	for (i = 1; i <= 16; i++) {
+		settings["channel"+i]= {
+			"bankselectcourse": null,
+			"bankselectfine": null,
+			"programchange": null
+		};
+	}
 
 // Enable WebMidi.js
 	WebMidi.enable(function(err) {
@@ -21,12 +29,17 @@
 		} else {
 			init();
 		}
-		createListeners();
+		
 		
 	});
 	
 	function init() {
+		createListeners();
+		updateSettingsDisplay();
+	}
 
+	function updateSettingsDisplay(){
+		$("#settings").text(JSON.stringify(settings, null, 1))
 	}
 
 	function createListeners() {
@@ -39,11 +52,15 @@
 					
 					console.log(`Updating MSB for ch: ${e.channel} to ${e.value}`);
 					$(`#bankselectcoarse_${e.channel}`).text(e.value);
+					settings["channel"+e.channel]["bankselectcourse"] = e.value;
+					updateSettingsDisplay();
 					break;
 				case "bankselectfine":
 					
 					console.log(`Updating LSB for ch: ${e.channel} to ${e.value}`);
 					$(`#bankselectfine_${e.channel}`).text(e.value);
+					settings["channel"+e.channel]["bankselectfine"] = e.value;
+					updateSettingsDisplay();
 					break;
 				default:
 					console.log("Received 'controlchange' message.", e);
@@ -52,6 +69,8 @@
 	
 			input.addListener("programchange", "all", function(e) {
 				$(`#pc_${e.channel}`).text(e.value);
+				settings["channel"+e.channel]["programchange"] = e.value;
+				updateSettingsDisplay();
 				console.log(`Updating PC for ch: ${e.channel} to ${e.value}`);
 			});
 		});
@@ -148,6 +167,11 @@
 	<p id="reportBugs">
 		Please report bugs here: <a href="https://github.com/Skeyelab/MIDI-Program-Master/issues">https://github.com/Skeyelab/MIDI-Program-Master/issues</a>
 	</p>
+	<hr>
+	<p>Settings as JSON</p>
+	<pre id="settings">
+
+	</pre>
 <!-- DivTable.com -->
 <!-- DivTable.com -->
 
