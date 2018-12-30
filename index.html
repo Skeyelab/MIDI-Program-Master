@@ -18,11 +18,11 @@
 		settings["channel"+i]= {
 			"bankselectcourse": null,
 			"bankselectfine": null,
-			"programchange": null
+			"programchange": null,
+			"channel": i
 		};
 	}
 
-// Enable WebMidi.js
 	WebMidi.enable(function(err) {
 		if (err) {
 		console.log("WebMidi could not be enabled.", err);
@@ -39,8 +39,37 @@
 	}
 
 	function updateSettingsDisplay(){
-		$("#settings").text(JSON.stringify(settings, null, 1))
+		$("#settings").text(JSON.stringify(settings, null, 1));
 	}
+
+	const sleep = (milliseconds) => {
+		return new Promise(resolve => setTimeout(resolve, milliseconds))
+	  }
+	
+	function sendSettings(){
+		WebMidi.outputs.forEach(output => {
+			for (var key in settings) {
+				if (settings[key]["bankselectcourse"] != null){
+						console.log(`Sending MSB for ch: ${settings[key]["channel"]} to ${settings[key]["bankselectcourse"]} to ${output.name}`);
+						output.sendControlChange(0, settings[key]["bankselectcoarse"], settings[key]["channel"]);					
+				};
+				
+				if (settings[key]["bankselectfine"] != null){
+						console.log(`Sending LSB for ch: ${settings[key]["channel"]} to ${settings[key]["bankselectfine"]} to ${output.name}`);
+						output.sendControlChange("bankselectfine", settings[key]["bankselectfine"], settings[key]["channel"]);					
+				};
+	
+				if (settings[key]["programchange"] != null){
+						console.log(`Sending PC for ch: ${settings[key]["channel"]} to ${settings[key]["programchange"]} to ${output.name}`);
+						output.sendProgramChange(settings[key]["programchange"], settings[key]["channel"]);
+				};
+			}
+		});
+	}
+
+	
+
+		
 
 	function createListeners() {
 		WebMidi.inputs.forEach(input => {
