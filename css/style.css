@@ -1,6 +1,9 @@
 .divTable{
 	display: table;
-	width: 100%;
+    width: 100%;
+    font-family: monospace;
+    text-align: center;
+    vertical-align: middle;
 }
 .divTableRow {
 	display: table-row;
@@ -26,4 +29,12 @@
 }
 .divTableBody {
 	display: table-row-group;
+}
+
+h1 {
+    font-family: monospace;
+}
+
+p {
+    font-family: monospace;
 }
