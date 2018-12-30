@@ -1,0 +1,194 @@
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style type="text/css">
+	/* DivTable.com */
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+</style>
+</head>
+<body>
+	<script type="text/javascript">
+		
+// Enable WebMidi.js
+WebMidi.enable(function (err) {
+
+  if (err) {
+    console.log("WebMidi could not be enabled.", err);
+  }
+
+  // // Viewing available inputs and outputs
+  // console.log(WebMidi.inputs);
+  // console.log(WebMidi.outputs);
+
+  // // Display the current time
+  // console.log(WebMidi.time);
+
+  // // Retrieving an output port/device using its id, name or index
+  // var output = WebMidi.getOutputById("123456789");
+  // //output = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
+  // output = WebMidi.outputs[4];
+
+  // // Play a note on all channels of the selected output
+  // output.playNote("C3");
+
+  // // Play a note on channel 3
+  // output.playNote("Gb4", 3);
+
+  // // Play a chord on all available channels
+  // output.playNote(["C3", "D#3", "G3"]);
+
+  // // Play a chord on channel 7
+  // output.playNote(["C3", "D#3", "G3"], 7);
+
+  // // Play a note at full velocity on all channels)
+  // output.playNote("F#-1", "all", {velocity: 1});
+
+  // // Play a note on channel 16 in 2 seconds (relative time)
+  // output.playNote("F5", 16, {time: "+2000"});
+
+  // // Play a note on channel 1 at an absolute time in the future
+  // output.playNote("F5", 16, {time: WebMidi.time + 3000});
+
+  // // Play a note for a duration of 2 seconds (will send a note off message in 2 seconds). Also use
+  // // a low attack velocity
+  // output.playNote("Gb2", 10, {duration: 2000, velocity: 0.25});
+
+  // // Stop a playing note on all channels
+  // output.stopNote("C-1");
+
+  // // Stopping a playing note on channel 11
+  // output.stopNote("F3", 11);
+
+  // // Stop a playing note on channel 11 and use a high release velocity
+  // output.stopNote("G8", 11, {velocity: 0.9});
+
+  // // Stopping a playing note in 2.5 seconds
+  // output.stopNote("Bb2", 11, {time: "+2500"});
+
+  // // Send polyphonic aftertouch message to channel 8
+  // output.sendKeyAftertouch("C#3", 8, 0.25);
+
+  // // Send pitch bend (between -1 and 1) to channel 12
+  // output.sendPitchBend(-1, 12);
+
+  // // You can chain most method calls
+  // output.playNote("G5", 12)
+  //   .sendPitchBend(-0.5, 12, {time: 400}) // After 400 ms.
+  //   .sendPitchBend(0.5, 12, {time: 800})  // After 800 ms.
+  //   .stopNote("G5", 12, {time: 1200});    // After 1.2 s.
+
+  // Retrieve an input by name, id or index
+  //var input = WebMidi.getInputByName("nanoKEY2 KEYBOARD");
+  //input = WebMidi.getInputById("1809568182");
+  var input = WebMidi.inputs[4];
+
+  // Listen to control change message on all channels
+  input.addListener('controlchange', "all",
+    function (e) {
+
+      console.log("Received 'controlchange' message.", e);
+      switch(e.controller.name) {
+      	case "bankselectcoarse":
+		  //update field
+		  console.log(`Updating MSB for ch: ${e.channel} to ${e.value}`);
+		  break;
+      	case "bankselectfine":
+		  //update field
+		  console.log(`Updating LSB for ch: ${e.channel} to ${e.value}`);
+		  break;
+      }
+    }
+  );
+
+  input.addListener('programchange', "all",
+    function (e) {
+      $( "#pc12" ).text(e.value);
+      console.log("Received 'programchange' message.", e);
+    }
+  );
+
+  // // Check for the presence of an event listener (n such cases, you cannot use anonymous functions).
+  // function test(e) { console.log(e); }
+  // input.addListener('programchange', 12, test);
+  // console.log("Has event listener: ", input.hasListener('programchange', 12, test));
+
+  // // Remove a specific listener
+  // input.removeListener('programchange', 12, test);
+  // console.log("Has event listener: ", input.hasListener('programchange', 12, test));
+
+  // // Remove all listeners of a specific type on a specific channel
+  // input.removeListener('noteoff', 12);
+
+  // // Remove all listeners for 'noteoff' on all channels
+  // input.removeListener('noteoff');
+
+  // // Remove all listeners on the input
+  // input.removeListener();
+
+});
+
+	</script>
+
+
+<div class="divTable">
+	<div class="divTableBody">
+		<div class="divTableRow">
+			<div class="divTableCell">&nbsp;</div>
+			<div class="divTableCell">&nbsp;1</div>
+			<div class="divTableCell">&nbsp;2</div>
+			<div class="divTableCell">&nbsp;12</div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell">&nbsp;MSB</div>
+			<div class="divTableCell" id="msb1">&nbsp;</div>
+			<div class="divTableCell" id="msb2">&nbsp;</div>
+			<div class="divTableCell" id="msb12">&nbsp;</div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell">&nbsp;LSB</div>
+			<div class="divTableCell" id="lsb1">&nbsp;</div>
+			<div class="divTableCell" id="lsb2">&nbsp;</div>
+			<div class="divTableCell" id="lsb12">&nbsp;</div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell">&nbsp;PC</div>
+			<div class="divTableCell" id="pc1">&nbsp;</div>
+			<div class="divTableCell" id="pc2">&nbsp;</div>
+			<div class="divTableCell" id="pc12">&nbsp;</div>
+		</div>
+	</div>
+</div>
+<!-- DivTable.com -->
+<!-- DivTable.com -->
+
+
+</html>
