@@ -3,6 +3,7 @@
 	<title>Program Change Monitor</title>
 	<script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="pm.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -11,102 +12,6 @@
 	<link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
 </head>
 <body>
-	<script type="text/javascript">
-	
-	var settings = {};
-	for (i = 1; i <= 16; i++) {
-		settings["channel"+i]= {
-			"bankselectcourse": null,
-			"bankselectfine": null,
-			"programchange": null,
-			"channel": i
-		};
-	}
-
-	WebMidi.enable(function(err) {
-		if (err) {
-		console.log("WebMidi could not be enabled.", err);
-		} else {
-			init();
-		}
-		
-		
-	});
-	
-	function init() {
-		createListeners();
-		updateSettingsDisplay();
-	}
-
-	function updateSettingsDisplay(){
-		$("#settings").text(JSON.stringify(settings, null, 1));
-	}
-
-	const sleep = (milliseconds) => {
-		return new Promise(resolve => setTimeout(resolve, milliseconds))
-	  }
-	
-	function sendSettings(){
-		WebMidi.outputs.forEach(output => {
-			for (var key in settings) {
-				if (settings[key]["bankselectcourse"] != null){
-						console.log(`Sending MSB for ch: ${settings[key]["channel"]} to ${settings[key]["bankselectcourse"]} to ${output.name}`);
-						output.sendControlChange(0, settings[key]["bankselectcoarse"], settings[key]["channel"]);					
-				};
-				
-				if (settings[key]["bankselectfine"] != null){
-						console.log(`Sending LSB for ch: ${settings[key]["channel"]} to ${settings[key]["bankselectfine"]} to ${output.name}`);
-						output.sendControlChange("bankselectfine", settings[key]["bankselectfine"], settings[key]["channel"]);					
-				};
-	
-				if (settings[key]["programchange"] != null){
-						console.log(`Sending PC for ch: ${settings[key]["channel"]} to ${settings[key]["programchange"]} to ${output.name}`);
-						output.sendProgramChange(settings[key]["programchange"], settings[key]["channel"]);
-				};
-			}
-		});
-	}
-
-	
-
-		
-
-	function createListeners() {
-		WebMidi.inputs.forEach(input => {
-	
-			// Listen to control change message on all channels
-			input.addListener("controlchange", "all", function(e) {
-				switch (e.controller.name) {
-				case "bankselectcoarse":
-					
-					console.log(`Updating MSB for ch: ${e.channel} to ${e.value}`);
-					$(`#bankselectcoarse_${e.channel}`).text(e.value);
-					settings["channel"+e.channel]["bankselectcourse"] = e.value;
-					updateSettingsDisplay();
-					break;
-				case "bankselectfine":
-					
-					console.log(`Updating LSB for ch: ${e.channel} to ${e.value}`);
-					$(`#bankselectfine_${e.channel}`).text(e.value);
-					settings["channel"+e.channel]["bankselectfine"] = e.value;
-					updateSettingsDisplay();
-					break;
-				default:
-					console.log("Received 'controlchange' message.", e);
-				}
-			});
-	
-			input.addListener("programchange", "all", function(e) {
-				$(`#pc_${e.channel}`).text(e.value);
-				settings["channel"+e.channel]["programchange"] = e.value;
-				updateSettingsDisplay();
-				console.log(`Updating PC for ch: ${e.channel} to ${e.value}`);
-			});
-		});
-	}
-
-	</script>
-
 	<h1>Program Change Monitor</h1>
 	<p id="intro">
 		What is this?  This is a browser based MIDI Program Change monitor.  <br/>
