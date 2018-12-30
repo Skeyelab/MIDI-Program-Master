@@ -115,75 +115,115 @@ WebMidi.enable(function (err) {
   input.addListener('controlchange', "all",
     function (e) {
 
-      console.log("Received 'controlchange' message.", e);
+      //console.log("Received 'controlchange' message.", e);
       switch(e.controller.name) {
       	case "bankselectcoarse":
 		  //update field
 		  console.log(`Updating MSB for ch: ${e.channel} to ${e.value}`);
+		  $( `#bankselectcoarse_${e.channel}` ).text(e.value);
 		  break;
       	case "bankselectfine":
 		  //update field
 		  console.log(`Updating LSB for ch: ${e.channel} to ${e.value}`);
+		  $( `#bankselectfine_${e.channel}` ).text(e.value);
 		  break;
+		default:
+		  console.log("Received 'controlchange' message.", e);
       }
     }
   );
 
   input.addListener('programchange', "all",
     function (e) {
-      $( "#pc12" ).text(e.value);
-      console.log("Received 'programchange' message.", e);
+      $( `#pc_${e.channel}` ).text(e.value);
+      //console.log("Received 'programchange' message.", e);
+      console.log(`Updating PC for ch: ${e.channel} to ${e.value}`);
     }
   );
 
-  // // Check for the presence of an event listener (n such cases, you cannot use anonymous functions).
-  // function test(e) { console.log(e); }
-  // input.addListener('programchange', 12, test);
-  // console.log("Has event listener: ", input.hasListener('programchange', 12, test));
-
-  // // Remove a specific listener
-  // input.removeListener('programchange', 12, test);
-  // console.log("Has event listener: ", input.hasListener('programchange', 12, test));
-
-  // // Remove all listeners of a specific type on a specific channel
-  // input.removeListener('noteoff', 12);
-
-  // // Remove all listeners for 'noteoff' on all channels
-  // input.removeListener('noteoff');
-
-  // // Remove all listeners on the input
-  // input.removeListener();
 
 });
 
 	</script>
 
-
+<h1>Program Change Monitor</h1>
 <div class="divTable">
 	<div class="divTableBody">
 		<div class="divTableRow">
 			<div class="divTableCell">&nbsp;</div>
 			<div class="divTableCell">&nbsp;1</div>
 			<div class="divTableCell">&nbsp;2</div>
+			<div class="divTableCell">&nbsp;3</div>
+			<div class="divTableCell">&nbsp;4</div>
+			<div class="divTableCell">&nbsp;5</div>
+			<div class="divTableCell">&nbsp;6</div>
+			<div class="divTableCell">&nbsp;7</div>
+			<div class="divTableCell">&nbsp;8</div>
+			<div class="divTableCell">&nbsp;9</div>
+			<div class="divTableCell">&nbsp;10</div>
+			<div class="divTableCell">&nbsp;11</div>
 			<div class="divTableCell">&nbsp;12</div>
+			<div class="divTableCell">&nbsp;13</div>
+			<div class="divTableCell">&nbsp;14</div>
+			<div class="divTableCell">&nbsp;15</div>
+			<div class="divTableCell">&nbsp;16</div>
 		</div>
 		<div class="divTableRow">
 			<div class="divTableCell">&nbsp;MSB</div>
-			<div class="divTableCell" id="msb1">&nbsp;</div>
-			<div class="divTableCell" id="msb2">&nbsp;</div>
-			<div class="divTableCell" id="msb12">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_1">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_2">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_3">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_4">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_5">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_6">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_7">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_8">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_9">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_10">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_11">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_12">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_13">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_14">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_15">&nbsp;</div>
+			<div class="divTableCell" id="bankselectcoarse_16">&nbsp;</div>
 		</div>
 		<div class="divTableRow">
 			<div class="divTableCell">&nbsp;LSB</div>
-			<div class="divTableCell" id="lsb1">&nbsp;</div>
-			<div class="divTableCell" id="lsb2">&nbsp;</div>
-			<div class="divTableCell" id="lsb12">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_1">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_2">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_3">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_4">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_5">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_6">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_7">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_8">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_9">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_10">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_11">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_12">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_13">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_14">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_15">&nbsp;</div>
+			<div class="divTableCell" id="bankselectfine_16">&nbsp;</div>
 		</div>
 		<div class="divTableRow">
 			<div class="divTableCell">&nbsp;PC</div>
-			<div class="divTableCell" id="pc1">&nbsp;</div>
-			<div class="divTableCell" id="pc2">&nbsp;</div>
-			<div class="divTableCell" id="pc12">&nbsp;</div>
+			<div class="divTableCell" id="pc_1">&nbsp;</div>
+			<div class="divTableCell" id="pc_2">&nbsp;</div>
+			<div class="divTableCell" id="pc_3">&nbsp;</div>
+			<div class="divTableCell" id="pc_4">&nbsp;</div>
+			<div class="divTableCell" id="pc_5">&nbsp;</div>
+			<div class="divTableCell" id="pc_6">&nbsp;</div>
+			<div class="divTableCell" id="pc_7">&nbsp;</div>
+			<div class="divTableCell" id="pc_8">&nbsp;</div>
+			<div class="divTableCell" id="pc_9">&nbsp;</div>
+			<div class="divTableCell" id="pc_10">&nbsp;</div>
+			<div class="divTableCell" id="pc_11">&nbsp;</div>
+			<div class="divTableCell" id="pc_12">&nbsp;</div>
+			<div class="divTableCell" id="pc_13">&nbsp;</div>
+			<div class="divTableCell" id="pc_14">&nbsp;</div>
+			<div class="divTableCell" id="pc_15">&nbsp;</div>
+			<div class="divTableCell" id="pc_16">&nbsp;</div>
 		</div>
 	</div>
 </div>
