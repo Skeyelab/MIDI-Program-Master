@@ -1,8 +1,14 @@
 <html>
 <head>
+	<title>Program Change Monitor</title>
 	<script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
 </head>
 <body>
 	<script type="text/javascript">
@@ -12,11 +18,21 @@
 	WebMidi.enable(function(err) {
 		if (err) {
 		console.log("WebMidi could not be enabled.", err);
+		} else {
+			init();
 		}
+		createListeners();
+		
+	});
 	
+	function init() {
+
+	}
+
+	function createListeners() {
 		WebMidi.inputs.forEach(input => {
 	
-		// Listen to control change message on all channels
+			// Listen to control change message on all channels
 			input.addListener("controlchange", "all", function(e) {
 				switch (e.controller.name) {
 				case "bankselectcoarse":
@@ -39,11 +55,12 @@
 				console.log(`Updating PC for ch: ${e.channel} to ${e.value}`);
 			});
 		});
-	});
-  
+	}
+
 	</script>
 
 	<h1>Program Change Monitor</h1>
+	<p>This should monitor program change data for all available MIDI inputs.  Please report bugs here: <a href="https://github.com/Skeyelab/MIDI-Program-Master/issues">https://github.com/Skeyelab/MIDI-Program-Master/issues</a></p>
 	<div class="divTable">
 		<div class="divTableBody">
 			<div class="divTableRow">
