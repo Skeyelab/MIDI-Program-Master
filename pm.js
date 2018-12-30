@@ -1,27 +1,24 @@
 var settings = {};
-	for (i = 1; i <= 16; i++) {
-		settings["channel"+i]= {
-			"bankselectcourse": null,
-			"bankselectfine": null,
-			"programchange": null,
-			"channel": i
-		};
-	}
+for (i = 1; i <= 16; i++) {
+    settings["channel"+i]= {
+        "bankselectcourse": null,
+        "bankselectfine": null,
+        "programchange": null,
+        "channel": i
+    };
+}
 
-	WebMidi.enable(function(err) {
-		if (err) {
-		console.log("WebMidi could not be enabled.", err);
-		} else {
-			init();
-		}
-		
-		
-	});
+WebMidi.enable(function(err) {
+    if (err) {
+        $("#container").html("<p>WebMidi could not be enabled.</p>")
+    } else {
+        init();
+    }
+});
 	
 	function init() {
         displayInputNames();
 		createListeners();
-		updateSettingsDisplay();
 	}
 
 	function updateSettingsDisplay(){
@@ -102,9 +99,11 @@ var settings = {};
 		});
     }
     
+$( document ).ready(function() {
     $('#settingsButton').click(function(){
         if ( $('#settings').css('visibility') == 'hidden' )
           $('#settings').css('visibility','visible');
         else
           $('#settings').css('visibility','hidden');
       });
+});
