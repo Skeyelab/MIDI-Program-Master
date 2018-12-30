@@ -43,3 +43,7 @@ p {
 #inputs_found {
     font-family: monospace;
 }
+
+#settings {
+    visibility: hidden;
+}
