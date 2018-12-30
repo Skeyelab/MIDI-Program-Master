@@ -6,196 +6,124 @@
 </head>
 <body>
 	<script type="text/javascript">
-		
+//var settings = {channel: 1, values:{ 12bankselectcoarse:0, bankselectfine:0, pc:0}};
+
 // Enable WebMidi.js
-WebMidi.enable(function (err) {
-
-  if (err) {
-    console.log("WebMidi could not be enabled.", err);
-  }
-
-  // // Viewing available inputs and outputs
-   console.log(WebMidi.inputs);
-  // console.log(WebMidi.outputs);
-
-  // // Display the current time
-  // console.log(WebMidi.time);
-
-  // // Retrieving an output port/device using its id, name or index
-  // var output = WebMidi.getOutputById("123456789");
-  // //output = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
-  // output = WebMidi.outputs[4];
-
-  // // Play a note on all channels of the selected output
-  // output.playNote("C3");
-
-  // // Play a note on channel 3
-  // output.playNote("Gb4", 3);
-
-  // // Play a chord on all available channels
-  // output.playNote(["C3", "D#3", "G3"]);
-
-  // // Play a chord on channel 7
-  // output.playNote(["C3", "D#3", "G3"], 7);
-
-  // // Play a note at full velocity on all channels)
-  // output.playNote("F#-1", "all", {velocity: 1});
-
-  // // Play a note on channel 16 in 2 seconds (relative time)
-  // output.playNote("F5", 16, {time: "+2000"});
-
-  // // Play a note on channel 1 at an absolute time in the future
-  // output.playNote("F5", 16, {time: WebMidi.time + 3000});
-
-  // // Play a note for a duration of 2 seconds (will send a note off message in 2 seconds). Also use
-  // // a low attack velocity
-  // output.playNote("Gb2", 10, {duration: 2000, velocity: 0.25});
-
-  // // Stop a playing note on all channels
-  // output.stopNote("C-1");
-
-  // // Stopping a playing note on channel 11
-  // output.stopNote("F3", 11);
-
-  // // Stop a playing note on channel 11 and use a high release velocity
-  // output.stopNote("G8", 11, {velocity: 0.9});
-
-  // // Stopping a playing note in 2.5 seconds
-  // output.stopNote("Bb2", 11, {time: "+2500"});
-
-  // // Send polyphonic aftertouch message to channel 8
-  // output.sendKeyAftertouch("C#3", 8, 0.25);
-
-  // // Send pitch bend (between -1 and 1) to channel 12
-  // output.sendPitchBend(-1, 12);
-
-  // // You can chain most method calls
-  // output.playNote("G5", 12)
-  //   .sendPitchBend(-0.5, 12, {time: 400}) // After 400 ms.
-  //   .sendPitchBend(0.5, 12, {time: 800})  // After 800 ms.
-  //   .stopNote("G5", 12, {time: 1200});    // After 1.2 s.
-
-  // Retrieve an input by name, id or index
-  //var input = WebMidi.getInputByName("nanoKEY2 KEYBOARD");
-  //input = WebMidi.getInputById("1809568182");
-  var input = WebMidi.inputs[4];
-
-  // Listen to control change message on all channels
-  input.addListener('controlchange', "all",
-    function (e) {
-
-      //console.log("Received 'controlchange' message.", e);
-      switch(e.controller.name) {
-      	case "bankselectcoarse":
-		  //update field
-		  console.log(`Updating MSB for ch: ${e.channel} to ${e.value}`);
-		  $( `#bankselectcoarse_${e.channel}` ).text(e.value);
-		  break;
-      	case "bankselectfine":
-		  //update field
-		  console.log(`Updating LSB for ch: ${e.channel} to ${e.value}`);
-		  $( `#bankselectfine_${e.channel}` ).text(e.value);
-		  break;
-		default:
-		  console.log("Received 'controlchange' message.", e);
-      }
-    }
-  );
-
-  input.addListener('programchange', "all",
-    function (e) {
-      $( `#pc_${e.channel}` ).text(e.value);
-      //console.log("Received 'programchange' message.", e);
-      console.log(`Updating PC for ch: ${e.channel} to ${e.value}`);
-    }
-  );
-
-
-});
-
+	WebMidi.enable(function(err) {
+		if (err) {
+		console.log("WebMidi could not be enabled.", err);
+		}
+	
+		WebMidi.inputs.forEach(input => {
+	
+		// Listen to control change message on all channels
+			input.addListener("controlchange", "all", function(e) {
+				switch (e.controller.name) {
+				case "bankselectcoarse":
+					
+					console.log(`Updating MSB for ch: ${e.channel} to ${e.value}`);
+					$(`#bankselectcoarse_${e.channel}`).text(e.value);
+					break;
+				case "bankselectfine":
+					
+					console.log(`Updating LSB for ch: ${e.channel} to ${e.value}`);
+					$(`#bankselectfine_${e.channel}`).text(e.value);
+					break;
+				default:
+					console.log("Received 'controlchange' message.", e);
+				}
+			});
+	
+			input.addListener("programchange", "all", function(e) {
+				$(`#pc_${e.channel}`).text(e.value);
+				console.log(`Updating PC for ch: ${e.channel} to ${e.value}`);
+			});
+		});
+	});
+  
 	</script>
 
-<h1>Program Change Monitor</h1>
-<div class="divTable">
-	<div class="divTableBody">
-		<div class="divTableRow">
-			<div class="divTableCell">&nbsp;</div>
-			<div class="divTableCell">&nbsp;1</div>
-			<div class="divTableCell">&nbsp;2</div>
-			<div class="divTableCell">&nbsp;3</div>
-			<div class="divTableCell">&nbsp;4</div>
-			<div class="divTableCell">&nbsp;5</div>
-			<div class="divTableCell">&nbsp;6</div>
-			<div class="divTableCell">&nbsp;7</div>
-			<div class="divTableCell">&nbsp;8</div>
-			<div class="divTableCell">&nbsp;9</div>
-			<div class="divTableCell">&nbsp;10</div>
-			<div class="divTableCell">&nbsp;11</div>
-			<div class="divTableCell">&nbsp;12</div>
-			<div class="divTableCell">&nbsp;13</div>
-			<div class="divTableCell">&nbsp;14</div>
-			<div class="divTableCell">&nbsp;15</div>
-			<div class="divTableCell">&nbsp;16</div>
-		</div>
-		<div class="divTableRow">
-			<div class="divTableCell">&nbsp;MSB</div>
-			<div class="divTableCell" id="bankselectcoarse_1">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_2">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_3">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_4">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_5">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_6">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_7">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_8">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_9">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_10">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_11">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_12">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_13">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_14">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_15">&nbsp;</div>
-			<div class="divTableCell" id="bankselectcoarse_16">&nbsp;</div>
-		</div>
-		<div class="divTableRow">
-			<div class="divTableCell">&nbsp;LSB</div>
-			<div class="divTableCell" id="bankselectfine_1">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_2">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_3">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_4">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_5">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_6">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_7">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_8">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_9">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_10">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_11">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_12">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_13">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_14">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_15">&nbsp;</div>
-			<div class="divTableCell" id="bankselectfine_16">&nbsp;</div>
-		</div>
-		<div class="divTableRow">
-			<div class="divTableCell">&nbsp;PC</div>
-			<div class="divTableCell" id="pc_1">&nbsp;</div>
-			<div class="divTableCell" id="pc_2">&nbsp;</div>
-			<div class="divTableCell" id="pc_3">&nbsp;</div>
-			<div class="divTableCell" id="pc_4">&nbsp;</div>
-			<div class="divTableCell" id="pc_5">&nbsp;</div>
-			<div class="divTableCell" id="pc_6">&nbsp;</div>
-			<div class="divTableCell" id="pc_7">&nbsp;</div>
-			<div class="divTableCell" id="pc_8">&nbsp;</div>
-			<div class="divTableCell" id="pc_9">&nbsp;</div>
-			<div class="divTableCell" id="pc_10">&nbsp;</div>
-			<div class="divTableCell" id="pc_11">&nbsp;</div>
-			<div class="divTableCell" id="pc_12">&nbsp;</div>
-			<div class="divTableCell" id="pc_13">&nbsp;</div>
-			<div class="divTableCell" id="pc_14">&nbsp;</div>
-			<div class="divTableCell" id="pc_15">&nbsp;</div>
-			<div class="divTableCell" id="pc_16">&nbsp;</div>
+	<h1>Program Change Monitor</h1>
+	<div class="divTable">
+		<div class="divTableBody">
+			<div class="divTableRow">
+				<div class="divTableCell">&nbsp;</div>
+				<div class="divTableCell">&nbsp;1</div>
+				<div class="divTableCell">&nbsp;2</div>
+				<div class="divTableCell">&nbsp;3</div>
+				<div class="divTableCell">&nbsp;4</div>
+				<div class="divTableCell">&nbsp;5</div>
+				<div class="divTableCell">&nbsp;6</div>
+				<div class="divTableCell">&nbsp;7</div>
+				<div class="divTableCell">&nbsp;8</div>
+				<div class="divTableCell">&nbsp;9</div>
+				<div class="divTableCell">&nbsp;10</div>
+				<div class="divTableCell">&nbsp;11</div>
+				<div class="divTableCell">&nbsp;12</div>
+				<div class="divTableCell">&nbsp;13</div>
+				<div class="divTableCell">&nbsp;14</div>
+				<div class="divTableCell">&nbsp;15</div>
+				<div class="divTableCell">&nbsp;16</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">&nbsp;MSB</div>
+				<div class="divTableCell" id="bankselectcoarse_1">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_2">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_3">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_4">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_5">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_6">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_7">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_8">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_9">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_10">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_11">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_12">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_13">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_14">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_15">&nbsp;</div>
+				<div class="divTableCell" id="bankselectcoarse_16">&nbsp;</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">&nbsp;LSB</div>
+				<div class="divTableCell" id="bankselectfine_1">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_2">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_3">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_4">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_5">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_6">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_7">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_8">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_9">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_10">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_11">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_12">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_13">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_14">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_15">&nbsp;</div>
+				<div class="divTableCell" id="bankselectfine_16">&nbsp;</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">&nbsp;PC</div>
+				<div class="divTableCell" id="pc_1">&nbsp;</div>
+				<div class="divTableCell" id="pc_2">&nbsp;</div>
+				<div class="divTableCell" id="pc_3">&nbsp;</div>
+				<div class="divTableCell" id="pc_4">&nbsp;</div>
+				<div class="divTableCell" id="pc_5">&nbsp;</div>
+				<div class="divTableCell" id="pc_6">&nbsp;</div>
+				<div class="divTableCell" id="pc_7">&nbsp;</div>
+				<div class="divTableCell" id="pc_8">&nbsp;</div>
+				<div class="divTableCell" id="pc_9">&nbsp;</div>
+				<div class="divTableCell" id="pc_10">&nbsp;</div>
+				<div class="divTableCell" id="pc_11">&nbsp;</div>
+				<div class="divTableCell" id="pc_12">&nbsp;</div>
+				<div class="divTableCell" id="pc_13">&nbsp;</div>
+				<div class="divTableCell" id="pc_14">&nbsp;</div>
+				<div class="divTableCell" id="pc_15">&nbsp;</div>
+				<div class="divTableCell" id="pc_16">&nbsp;</div>
+			</div>
 		</div>
 	</div>
-</div>
 <!-- DivTable.com -->
 <!-- DivTable.com -->
 
