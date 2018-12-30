@@ -100,4 +100,11 @@ var settings = {};
 				console.log(`Updating PC for ch: ${e.channel} to ${e.value}`);
 			});
 		});
-	}
+    }
+    
+    $('#settingsButton').click(function(){
+        if ( $('#settings').css('visibility') == 'hidden' )
+          $('#settings').css('visibility','visible');
+        else
+          $('#settings').css('visibility','hidden');
+      });
