@@ -28,38 +28,49 @@ WebMidi.enable(function(err) {
 	const sleep = (milliseconds) => {
 		return new Promise(resolve => setTimeout(resolve, milliseconds))
 	  }
-	
-	function sendSettings(output){
-		//WebMidi.outputs.forEach(output => {
+    
+    function sendPCtoOutput(output, channel, programchange, bankselectcoarse, bankselectfine){
+        if (programchange != undefined) {
+            console.log(`Sending ${bankselectcoarse} ${bankselectfine} ${programchange} to ${channel} on ${output.name}`);
+            output.sendControlChange(0, bankselectcoarse, channel);
+            output.sendControlChange(32, bankselectfine, channel);
+            output.sendProgramChange(programchange, channel);
+        }
+
+    }
+
+	function sendSettingsToAllOuts(){
+		WebMidi.outputs.forEach(output => {
 			for (var key in settings) {
+                var bankselectcourse = 0;
+                var bankselectfine = 0;
+                var programchange = undefined;
+                var channel = settings[key]["channel"];
+
 				if (settings[key]["bankselectcourse"] != null){
-						console.log(`Sending MSB for ch: ${settings[key]["channel"]} to ${settings[key]["bankselectcourse"]} to ${output.name}`);
-						output.sendControlChange(0, settings[key]["bankselectcoarse"], settings[key]["channel"]);					
+                    bankselectcourse = settings[key]["bankselectcourse"];
 				};
 				
 				if (settings[key]["bankselectfine"] != null){
-						console.log(`Sending LSB for ch: ${settings[key]["channel"]} to ${settings[key]["bankselectfine"]} to ${output.name}`);
-						output.sendControlChange("bankselectfine", settings[key]["bankselectfine"], settings[key]["channel"], {time: "+2"});					
+                    bankselectfine = settings[key]["bankselectfine"];
 				};
 	
 				if (settings[key]["programchange"] != null){
-						console.log(`Sending PC for ch: ${settings[key]["channel"]} to ${settings[key]["programchange"]} to ${output.name}`);
-						output.sendProgramChange(settings[key]["programchange"], settings[key]["channel"],  {time: "+4"});
-				};
+                    programchange = settings[key]["programchange"];
+                };
+                sendPCtoOutput(output, channel, programchange, bankselectcourse, bankselectfine);
 			}
-		//});
+		});
 	}
 
 	
     function displayInputNames() {
 
         htmlStr = "MIDI Inputs found:<ul>";
-        
         WebMidi.inputs.forEach(input => {
             htmlStr = htmlStr + `<li>${input.name}</li>`;
         });
         htmlStr = htmlStr + "</ul>";
-        console.log(htmlStr);
         $("#inputs_found").html(htmlStr);
     }
     
