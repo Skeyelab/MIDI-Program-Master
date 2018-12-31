@@ -19,6 +19,7 @@ WebMidi.enable(function (err) {
 
 function init() {
     displayInputNames();
+    displayOutputNames();
     createListeners();
 }
 
@@ -63,6 +64,14 @@ function sendStoredSettingsToAllOuts() {
     });
 }
 
+function displayOutputNames() {
+    htmlStr = "MIDI Outputs found:<ul>";
+    WebMidi.outputs.forEach(output => {
+        htmlStr = htmlStr + `<li>${output.name}</li>`;
+    });
+    htmlStr = htmlStr + "</ul>";
+    $("#outputs_found").html(htmlStr);
+}
 
 function displayInputNames() {
     htmlStr = "MIDI Inputs found:<ul>";

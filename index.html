@@ -18,11 +18,24 @@
 	<h1>MIDI Program Master</h1>
 	<p>
 		What is this? This is a browser based MIDI Program Change 'scratch pad' for your whole studio. <br />
-		It should display program change data for all available MIDI inputs in real time, allow you store a snapshot, then recall it.
+		It will display program change data for all available MIDI inputs in real time, allow you store a snapshot, then restore it.<br />
+		When restore the snapshot, it will be sent to all available MIDI outputs.
 	
 	</p>
-	<div id="inputs_found">
+	<div id="midi_io" class="divTable">
+		<div class="divTableBody">
+			<div class="divTableRow">
+				<div class="divTableRow">
+					<div id="inputs_found" class="divTableCell">
 
+					</div>
+					<div id="outputs_found" class="divTableCell">
+						
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</div>
 	<p>
 		It uses <a href="http://djipco.github.io/webmidi/latest/classes/WebMidi.html">WebMidi.js</a> and is running 100% in

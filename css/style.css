@@ -62,8 +62,12 @@ p {
     font-family: monospace;
 }
 
-#inputs_found {
+#inputs_found,
+#outputs_found {
     font-family: monospace;
+    font-size: 1em;
+    width: 250px;
+    text-align: left;
 }
 
 #settings {
