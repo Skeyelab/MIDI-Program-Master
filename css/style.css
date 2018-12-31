@@ -47,3 +47,7 @@ p {
 #settings {
     visibility: hidden;
 }
+
+#restorebtn {
+    visibility: hidden;
+}

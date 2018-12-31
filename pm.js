@@ -1,4 +1,5 @@
 var settings = {};
+var storedSettings = null;
 for (i = 1; i <= 16; i++) {
     settings["channel"+i]= {
         "bankselectcourse": null,
@@ -39,24 +40,24 @@ WebMidi.enable(function(err) {
 
     }
 
-	function sendSettingsToAllOuts(){
+	function sendStoredSettingsToAllOuts(){
 		WebMidi.outputs.forEach(output => {
-			for (var key in settings) {
+			for (var key in storedSettings) {
                 var bankselectcourse = 0;
                 var bankselectfine = 0;
                 var programchange = undefined;
-                var channel = settings[key]["channel"];
+                var channel = storedSettings[key]["channel"];
 
 				if (settings[key]["bankselectcourse"] != null){
-                    bankselectcourse = settings[key]["bankselectcourse"];
+                    bankselectcourse = storedSettings[key]["bankselectcourse"];
 				};
 				
 				if (settings[key]["bankselectfine"] != null){
-                    bankselectfine = settings[key]["bankselectfine"];
+                    bankselectfine = storedSettings[key]["bankselectfine"];
 				};
 	
 				if (settings[key]["programchange"] != null){
-                    programchange = settings[key]["programchange"];
+                    programchange = storedSettings[key]["programchange"];
                 };
                 sendPCtoOutput(output, channel, programchange, bankselectcourse, bankselectfine);
 			}
@@ -117,4 +118,15 @@ $( document ).ready(function() {
         else
           $('#settings').css('visibility','hidden');
       });
+
+      $('#storebtn').click(function(){
+          console.log("storing settings");
+        storedSettings = JSON.parse(JSON.stringify(settings));
+        $('#restorebtn').css('visibility','visible');
+      });
+
+      $('#restorebtn').click(function(){
+        console.log("sending stored settings");
+        sendStoredSettingsToAllOuts();
+    });
 });
