@@ -74,6 +74,13 @@ WebMidi.enable(function(err) {
         htmlStr = htmlStr + "</ul>";
         $("#inputs_found").html(htmlStr);
     }
+    function updateGrid(){
+        for (i = 1; i <= 16; i++) {
+            $(`#bankselectcoarse_${i}`).text(settings["channel"+i]["bankselectcourse"]);
+            $(`#bankselectfine_${i}`).text(settings["channel"+i]["bankselectfine"]);
+            $(`#pc_${i}`).text(settings["channel"+i]["programchange"]);
+        }
+    }
     
 		
 
@@ -128,5 +135,7 @@ $( document ).ready(function() {
       $('#restorebtn').click(function(){
         console.log("sending stored settings");
         sendStoredSettingsToAllOuts();
+        settings = JSON.parse(JSON.stringify(storedSettings));
+        updateGrid();
     });
 });
