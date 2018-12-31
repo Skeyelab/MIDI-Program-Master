@@ -128,13 +128,11 @@ $(document).ready(function () {
     });
 
     $('#storebtn').click(function () {
-        console.log("storing settings");
         storedSettings = JSON.parse(JSON.stringify(settings));
         $('#restorebtn').css('visibility', 'visible');
     });
 
     $('#restorebtn').click(function () {
-        console.log("sending stored settings");
         sendStoredSettingsToAllOuts();
         settings = JSON.parse(JSON.stringify(storedSettings));
         updateGrid();
