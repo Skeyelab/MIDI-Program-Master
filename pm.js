@@ -32,7 +32,6 @@ const sleep = (milliseconds) => {
 
 function sendPCtoOutput(output, channel, programchange, bankselectcoarse, bankselectfine) {
     if (programchange != undefined) {
-        console.log(`Sending ${bankselectcoarse} ${bankselectfine} ${programchange} to ${channel} on ${output.name}`);
         output.sendControlChange(0, bankselectcoarse, channel);
         output.sendControlChange(32, bankselectfine, channel);
         output.sendProgramChange(programchange, channel);
@@ -66,7 +65,6 @@ function sendStoredSettingsToAllOuts() {
 
 
 function displayInputNames() {
-
     htmlStr = "MIDI Inputs found:<ul>";
     WebMidi.inputs.forEach(input => {
         htmlStr = htmlStr + `<li>${input.name}</li>`;
