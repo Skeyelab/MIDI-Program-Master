@@ -73,7 +73,7 @@ function displayInputNames() {
     $("#inputs_found").html(htmlStr);
 }
 
-function updateGrid() {
+function updateSettingsGrid() {
     for (i = 1; i <= 16; i++) {
         $(`#bankselectcoarse_${i}`).text(settings["channel" + i]["bankselectcourse"]);
         $(`#bankselectfine_${i}`).text(settings["channel" + i]["bankselectfine"]);
@@ -81,7 +81,13 @@ function updateGrid() {
     }
 }
 
-
+function updateStoredSettingsGrid() {
+    for (i = 1; i <= 16; i++) {
+        $(`#stored_bankselectcoarse_${i}`).text(storedSettings["channel" + i]["bankselectcourse"]);
+        $(`#stored_bankselectfine_${i}`).text(storedSettings["channel" + i]["bankselectfine"]);
+        $(`#stored_pc_${i}`).text(storedSettings["channel" + i]["programchange"]);
+    }
+}
 
 function createListeners() {
     WebMidi.inputs.forEach(input => {
@@ -128,11 +134,13 @@ $(document).ready(function () {
     $('#storebtn').click(function () {
         storedSettings = JSON.parse(JSON.stringify(settings));
         $('#restorebtn').css('visibility', 'visible');
+        $('#storedSettingsTable').css('visibility', 'visible');
+        updateStoredSettingsGrid();
     });
 
     $('#restorebtn').click(function () {
         sendStoredSettingsToAllOuts();
         settings = JSON.parse(JSON.stringify(storedSettings));
-        updateGrid();
+        updateSettingsGrid();
     });
 });

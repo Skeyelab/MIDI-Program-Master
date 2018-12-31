@@ -15,6 +15,21 @@
     display: table-header-group;
 }
 
+.btns {
+    display: block;
+    position:relative;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.divTableTitle {
+    font-family: monospace;
+    font-size: 1.5em;
+}
+
 .divTableCell,
 .divTableHead {
     border: 1px solid #999999;
@@ -59,6 +74,16 @@ p {
     visibility: hidden;
 }
 
+#storedSettingsTable {
+    visibility: hidden;
+}
+
 #settingsContainer {
     display: none;
+}
+
+#storebtn,
+#restorebtn {
+    font-size: 1.5em;
+    margin-block-end: unset;
 }
