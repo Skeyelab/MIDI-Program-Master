@@ -134,7 +134,7 @@ $(document).ready(function () {
     $('#storebtn').click(function () {
         storedSettings = JSON.parse(JSON.stringify(settings));
         $('#restorebtn').css('visibility', 'visible');
-        $('#storedSettingsTable').css('visibility', 'visible');
+        $('#storedSettingsTable').css('display', 'block');
         updateStoredSettingsGrid();
     });
 

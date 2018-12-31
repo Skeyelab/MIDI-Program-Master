@@ -75,7 +75,7 @@ p {
 }
 
 #storedSettingsTable {
-    visibility: hidden;
+    display: none;
 }
 
 #settingsContainer {
