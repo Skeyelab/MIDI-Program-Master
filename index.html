@@ -1,232 +1,222 @@
 <html>
-
-<head>
-	<title>MIDI Program Master</title>
-	<script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="pm.js"></script>
-
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-	<link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
-</head>
-
-<body>
-	<h1>MIDI Program Master</h1>
-	<p>
-		What is this? This is a browser based MIDI Program Change 'scratch pad' for your whole studio. <br />
-		It will display program change data for all available MIDI inputs in real time, allow you store a snapshot, then restore it.<br />
-		When restore the snapshot, it will be sent to all available MIDI outputs.
-	
-	</p>
-	<div id="midi_io" class="divTable">
-		<div class="divTableBody">
-			<div class="divTableRow">
-				<div class="divTableRow">
-					<div id="inputs_found" class="divTableCell">
-
-					</div>
-					<div id="outputs_found" class="divTableCell">
-						
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-	<p>
-		It uses <a href="http://djipco.github.io/webmidi/latest/classes/WebMidi.html">WebMidi.js</a> and is running 100% in
-		your browser. You can read the code on <a href="https://github.com/Skeyelab/MIDI-Program-Master">GitHub</a> if you
-		like.
-	</p>
-	<div id="container">
-		<div class="settingsTable" id='settingsTable'>
-			<div class="divTableTitle">Live Settings</div>
-			<div class="divTable">
-				<div class="divTableBody">
-					<div class="divTableRow">
-						<div class="divTableCell"></div>
-						<div class="divTableCell">1</div>
-						<div class="divTableCell">2</div>
-						<div class="divTableCell">3</div>
-						<div class="divTableCell">4</div>
-						<div class="divTableCell">5</div>
-						<div class="divTableCell">6</div>
-						<div class="divTableCell">7</div>
-						<div class="divTableCell">8</div>
-						<div class="divTableCell">9</div>
-						<div class="divTableCell">10</div>
-						<div class="divTableCell">11</div>
-						<div class="divTableCell">12</div>
-						<div class="divTableCell">13</div>
-						<div class="divTableCell">14</div>
-						<div class="divTableCell">15</div>
-						<div class="divTableCell">16</div>
-					</div>
-					<div class="divTableRow">
-						<div class="divTableCell">MSB</div>
-						<div class="divTableCell" id="bankselectcoarse_1"></div>
-						<div class="divTableCell" id="bankselectcoarse_2"></div>
-						<div class="divTableCell" id="bankselectcoarse_3"></div>
-						<div class="divTableCell" id="bankselectcoarse_4"></div>
-						<div class="divTableCell" id="bankselectcoarse_5"></div>
-						<div class="divTableCell" id="bankselectcoarse_6"></div>
-						<div class="divTableCell" id="bankselectcoarse_7"></div>
-						<div class="divTableCell" id="bankselectcoarse_8"></div>
-						<div class="divTableCell" id="bankselectcoarse_9"></div>
-						<div class="divTableCell" id="bankselectcoarse_10"></div>
-						<div class="divTableCell" id="bankselectcoarse_11"></div>
-						<div class="divTableCell" id="bankselectcoarse_12"></div>
-						<div class="divTableCell" id="bankselectcoarse_13"></div>
-						<div class="divTableCell" id="bankselectcoarse_14"></div>
-						<div class="divTableCell" id="bankselectcoarse_15"></div>
-						<div class="divTableCell" id="bankselectcoarse_16"></div>
-					</div>
-					<div class="divTableRow">
-						<div class="divTableCell">LSB</div>
-						<div class="divTableCell" id="bankselectfine_1"></div>
-						<div class="divTableCell" id="bankselectfine_2"></div>
-						<div class="divTableCell" id="bankselectfine_3"></div>
-						<div class="divTableCell" id="bankselectfine_4"></div>
-						<div class="divTableCell" id="bankselectfine_5"></div>
-						<div class="divTableCell" id="bankselectfine_6"></div>
-						<div class="divTableCell" id="bankselectfine_7"></div>
-						<div class="divTableCell" id="bankselectfine_8"></div>
-						<div class="divTableCell" id="bankselectfine_9"></div>
-						<div class="divTableCell" id="bankselectfine_10"></div>
-						<div class="divTableCell" id="bankselectfine_11"></div>
-						<div class="divTableCell" id="bankselectfine_12"></div>
-						<div class="divTableCell" id="bankselectfine_13"></div>
-						<div class="divTableCell" id="bankselectfine_14"></div>
-						<div class="divTableCell" id="bankselectfine_15"></div>
-						<div class="divTableCell" id="bankselectfine_16"></div>
-					</div>
-					<div class="divTableRow">
-						<div class="divTableCell">PC</div>
-						<div class="divTableCell" id="pc_1"></div>
-						<div class="divTableCell" id="pc_2"></div>
-						<div class="divTableCell" id="pc_3"></div>
-						<div class="divTableCell" id="pc_4"></div>
-						<div class="divTableCell" id="pc_5"></div>
-						<div class="divTableCell" id="pc_6"></div>
-						<div class="divTableCell" id="pc_7"></div>
-						<div class="divTableCell" id="pc_8"></div>
-						<div class="divTableCell" id="pc_9"></div>
-						<div class="divTableCell" id="pc_10"></div>
-						<div class="divTableCell" id="pc_11"></div>
-						<div class="divTableCell" id="pc_12"></div>
-						<div class="divTableCell" id="pc_13"></div>
-						<div class="divTableCell" id="pc_14"></div>
-						<div class="divTableCell" id="pc_15"></div>
-						<div class="divTableCell" id="pc_16"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="btnContainer">
-			<p id="storebtn">Store Settings</p><br/>
-		</div>
-		<div class="btnContainer">
-			<p id="restorebtn">Restore Settings</p>
-		</div>
-		<div class="settingsTable" id="storedSettingsTable">
-				<div class="divTableTitle">Stored Settings</div>
-				<div class="divTable">
-					<div class="divTableBody">
-						<div class="divTableRow">
-							<div class="divTableCell"></div>
-							<div class="divTableCell">1</div>
-							<div class="divTableCell">2</div>
-							<div class="divTableCell">3</div>
-							<div class="divTableCell">4</div>
-							<div class="divTableCell">5</div>
-							<div class="divTableCell">6</div>
-							<div class="divTableCell">7</div>
-							<div class="divTableCell">8</div>
-							<div class="divTableCell">9</div>
-							<div class="divTableCell">10</div>
-							<div class="divTableCell">11</div>
-							<div class="divTableCell">12</div>
-							<div class="divTableCell">13</div>
-							<div class="divTableCell">14</div>
-							<div class="divTableCell">15</div>
-							<div class="divTableCell">16</div>
-						</div>
-						<div class="divTableRow">
-							<div class="divTableCell">MSB</div>
-							<div class="divTableCell" id="stored_bankselectcoarse_1"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_2"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_3"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_4"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_5"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_6"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_7"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_8"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_9"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_10"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_11"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_12"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_13"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_14"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_15"></div>
-							<div class="divTableCell" id="stored_bankselectcoarse_16"></div>
-						</div>
-						<div class="divTableRow">
-							<div class="divTableCell">LSB</div>
-							<div class="divTableCell" id="stored_bankselectfine_1"></div>
-							<div class="divTableCell" id="stored_bankselectfine_2"></div>
-							<div class="divTableCell" id="stored_bankselectfine_3"></div>
-							<div class="divTableCell" id="stored_bankselectfine_4"></div>
-							<div class="divTableCell" id="stored_bankselectfine_5"></div>
-							<div class="divTableCell" id="stored_bankselectfine_6"></div>
-							<div class="divTableCell" id="stored_bankselectfine_7"></div>
-							<div class="divTableCell" id="stored_bankselectfine_8"></div>
-							<div class="divTableCell" id="stored_bankselectfine_9"></div>
-							<div class="divTableCell" id="stored_bankselectfine_10"></div>
-							<div class="divTableCell" id="stored_bankselectfine_11"></div>
-							<div class="divTableCell" id="stored_bankselectfine_12"></div>
-							<div class="divTableCell" id="stored_bankselectfine_13"></div>
-							<div class="divTableCell" id="stored_bankselectfine_14"></div>
-							<div class="divTableCell" id="stored_bankselectfine_15"></div>
-							<div class="divTableCell" id="stored_bankselectfine_16"></div>
-						</div>
-						<div class="divTableRow">
-							<div class="divTableCell">PC</div>
-							<div class="divTableCell" id="stored_pc_1"></div>
-							<div class="divTableCell" id="stored_pc_2"></div>
-							<div class="divTableCell" id="stored_pc_3"></div>
-							<div class="divTableCell" id="stored_pc_4"></div>
-							<div class="divTableCell" id="stored_pc_5"></div>
-							<div class="divTableCell" id="stored_pc_6"></div>
-							<div class="divTableCell" id="stored_pc_7"></div>
-							<div class="divTableCell" id="stored_pc_8"></div>
-							<div class="divTableCell" id="stored_pc_9"></div>
-							<div class="divTableCell" id="stored_pc_10"></div>
-							<div class="divTableCell" id="stored_pc_11"></div>
-							<div class="divTableCell" id="stored_pc_12"></div>
-							<div class="divTableCell" id="stored_pc_13"></div>
-							<div class="divTableCell" id="stored_pc_14"></div>
-							<div class="divTableCell" id="stored_pc_15"></div>
-							<div class="divTableCell" id="stored_pc_16"></div>
-						</div>
-					</div>
-				</div>
-		</div>
-
-		<div id="settingsContainer">
-			<hr>
-			<p id="settingsButton">Settings as JSON</p>
-			<pre id="settings">
+  <head>
+    <title>MIDI Program Master</title>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="pm.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
+  </head>
+  <body>
+    <h1>MIDI Program Master</h1>
+    <p>
+      What is this? This is a browser based MIDI Program Change 'scratch pad' for your whole studio.
+      <br /> It will display program change data for all available MIDI inputs in real time, allow you store a snapshot, then restore it.
+      <br /> When restore the snapshot, it will be sent to all available MIDI outputs.
+    </p>
+    <div id="midi_io" class="divTable">
+      <div class="divTableBody">
+        <div class="divTableRow">
+          <div class="divTableRow">
+            <div id="inputs_found" class="divTableCell">
+            </div>
+            <div id="outputs_found" class="divTableCell">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>
+      It uses <a href="http://djipco.github.io/webmidi/latest/classes/WebMidi.html">WebMidi.js</a> and is running 100% in your browser. You can read the code on <a href="https://github.com/Skeyelab/MIDI-Program-Master">GitHub</a> if you like.
+    </p>
+    <div id="container">
+      <div class="settingsTable" id='settingsTable'>
+        <div class="divTableTitle">Live Settings</div>
+        <div class="divTable">
+          <div class="divTableBody">
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell">1</div>
+              <div class="divTableCell">2</div>
+              <div class="divTableCell">3</div>
+              <div class="divTableCell">4</div>
+              <div class="divTableCell">5</div>
+              <div class="divTableCell">6</div>
+              <div class="divTableCell">7</div>
+              <div class="divTableCell">8</div>
+              <div class="divTableCell">9</div>
+              <div class="divTableCell">10</div>
+              <div class="divTableCell">11</div>
+              <div class="divTableCell">12</div>
+              <div class="divTableCell">13</div>
+              <div class="divTableCell">14</div>
+              <div class="divTableCell">15</div>
+              <div class="divTableCell">16</div>
+            </div>
+            <div class="divTableRow">
+              <div class="divTableCell">MSB</div>
+              <div class="divTableCell" id="bankselectcoarse_1"></div>
+              <div class="divTableCell" id="bankselectcoarse_2"></div>
+              <div class="divTableCell" id="bankselectcoarse_3"></div>
+              <div class="divTableCell" id="bankselectcoarse_4"></div>
+              <div class="divTableCell" id="bankselectcoarse_5"></div>
+              <div class="divTableCell" id="bankselectcoarse_6"></div>
+              <div class="divTableCell" id="bankselectcoarse_7"></div>
+              <div class="divTableCell" id="bankselectcoarse_8"></div>
+              <div class="divTableCell" id="bankselectcoarse_9"></div>
+              <div class="divTableCell" id="bankselectcoarse_10"></div>
+              <div class="divTableCell" id="bankselectcoarse_11"></div>
+              <div class="divTableCell" id="bankselectcoarse_12"></div>
+              <div class="divTableCell" id="bankselectcoarse_13"></div>
+              <div class="divTableCell" id="bankselectcoarse_14"></div>
+              <div class="divTableCell" id="bankselectcoarse_15"></div>
+              <div class="divTableCell" id="bankselectcoarse_16"></div>
+            </div>
+            <div class="divTableRow">
+              <div class="divTableCell">LSB</div>
+              <div class="divTableCell" id="bankselectfine_1"></div>
+              <div class="divTableCell" id="bankselectfine_2"></div>
+              <div class="divTableCell" id="bankselectfine_3"></div>
+              <div class="divTableCell" id="bankselectfine_4"></div>
+              <div class="divTableCell" id="bankselectfine_5"></div>
+              <div class="divTableCell" id="bankselectfine_6"></div>
+              <div class="divTableCell" id="bankselectfine_7"></div>
+              <div class="divTableCell" id="bankselectfine_8"></div>
+              <div class="divTableCell" id="bankselectfine_9"></div>
+              <div class="divTableCell" id="bankselectfine_10"></div>
+              <div class="divTableCell" id="bankselectfine_11"></div>
+              <div class="divTableCell" id="bankselectfine_12"></div>
+              <div class="divTableCell" id="bankselectfine_13"></div>
+              <div class="divTableCell" id="bankselectfine_14"></div>
+              <div class="divTableCell" id="bankselectfine_15"></div>
+              <div class="divTableCell" id="bankselectfine_16"></div>
+            </div>
+            <div class="divTableRow">
+              <div class="divTableCell">PC</div>
+              <div class="divTableCell" id="pc_1"></div>
+              <div class="divTableCell" id="pc_2"></div>
+              <div class="divTableCell" id="pc_3"></div>
+              <div class="divTableCell" id="pc_4"></div>
+              <div class="divTableCell" id="pc_5"></div>
+              <div class="divTableCell" id="pc_6"></div>
+              <div class="divTableCell" id="pc_7"></div>
+              <div class="divTableCell" id="pc_8"></div>
+              <div class="divTableCell" id="pc_9"></div>
+              <div class="divTableCell" id="pc_10"></div>
+              <div class="divTableCell" id="pc_11"></div>
+              <div class="divTableCell" id="pc_12"></div>
+              <div class="divTableCell" id="pc_13"></div>
+              <div class="divTableCell" id="pc_14"></div>
+              <div class="divTableCell" id="pc_15"></div>
+              <div class="divTableCell" id="pc_16"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btnContainer">
+        <p id="storebtn">Store Settings</p>
+        <br/>
+      </div>
+      <div class="btnContainer">
+        <p id="restorebtn">Restore Settings</p>
+      </div>
+      <div class="settingsTable" id="storedSettingsTable">
+        <div class="divTableTitle">Stored Settings</div>
+        <div class="divTable">
+          <div class="divTableBody">
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell">1</div>
+              <div class="divTableCell">2</div>
+              <div class="divTableCell">3</div>
+              <div class="divTableCell">4</div>
+              <div class="divTableCell">5</div>
+              <div class="divTableCell">6</div>
+              <div class="divTableCell">7</div>
+              <div class="divTableCell">8</div>
+              <div class="divTableCell">9</div>
+              <div class="divTableCell">10</div>
+              <div class="divTableCell">11</div>
+              <div class="divTableCell">12</div>
+              <div class="divTableCell">13</div>
+              <div class="divTableCell">14</div>
+              <div class="divTableCell">15</div>
+              <div class="divTableCell">16</div>
+            </div>
+            <div class="divTableRow">
+              <div class="divTableCell">MSB</div>
+              <div class="divTableCell" id="stored_bankselectcoarse_1"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_2"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_3"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_4"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_5"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_6"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_7"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_8"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_9"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_10"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_11"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_12"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_13"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_14"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_15"></div>
+              <div class="divTableCell" id="stored_bankselectcoarse_16"></div>
+            </div>
+            <div class="divTableRow">
+              <div class="divTableCell">LSB</div>
+              <div class="divTableCell" id="stored_bankselectfine_1"></div>
+              <div class="divTableCell" id="stored_bankselectfine_2"></div>
+              <div class="divTableCell" id="stored_bankselectfine_3"></div>
+              <div class="divTableCell" id="stored_bankselectfine_4"></div>
+              <div class="divTableCell" id="stored_bankselectfine_5"></div>
+              <div class="divTableCell" id="stored_bankselectfine_6"></div>
+              <div class="divTableCell" id="stored_bankselectfine_7"></div>
+              <div class="divTableCell" id="stored_bankselectfine_8"></div>
+              <div class="divTableCell" id="stored_bankselectfine_9"></div>
+              <div class="divTableCell" id="stored_bankselectfine_10"></div>
+              <div class="divTableCell" id="stored_bankselectfine_11"></div>
+              <div class="divTableCell" id="stored_bankselectfine_12"></div>
+              <div class="divTableCell" id="stored_bankselectfine_13"></div>
+              <div class="divTableCell" id="stored_bankselectfine_14"></div>
+              <div class="divTableCell" id="stored_bankselectfine_15"></div>
+              <div class="divTableCell" id="stored_bankselectfine_16"></div>
+            </div>
+            <div class="divTableRow">
+              <div class="divTableCell">PC</div>
+              <div class="divTableCell" id="stored_pc_1"></div>
+              <div class="divTableCell" id="stored_pc_2"></div>
+              <div class="divTableCell" id="stored_pc_3"></div>
+              <div class="divTableCell" id="stored_pc_4"></div>
+              <div class="divTableCell" id="stored_pc_5"></div>
+              <div class="divTableCell" id="stored_pc_6"></div>
+              <div class="divTableCell" id="stored_pc_7"></div>
+              <div class="divTableCell" id="stored_pc_8"></div>
+              <div class="divTableCell" id="stored_pc_9"></div>
+              <div class="divTableCell" id="stored_pc_10"></div>
+              <div class="divTableCell" id="stored_pc_11"></div>
+              <div class="divTableCell" id="stored_pc_12"></div>
+              <div class="divTableCell" id="stored_pc_13"></div>
+              <div class="divTableCell" id="stored_pc_14"></div>
+              <div class="divTableCell" id="stored_pc_15"></div>
+              <div class="divTableCell" id="stored_pc_16"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="settingsContainer">
+        <hr>
+        <p id="settingsButton">Settings as JSON</p>
+        <pre id="settings">
 
 			</pre>
-		</div>
-
-	</div>
-	<p id="reportBugs">
-			Please report bugs here: <a href="https://github.com/Skeyelab/MIDI-Program-Master/issues">https://github.com/Skeyelab/MIDI-Program-Master/issues</a>
-	</p>
-	<p>version 1.0</p>
+      </div>
+    </div>
+    <p id="reportBugs">
+      Please report bugs here: <a href="https://github.com/Skeyelab/MIDI-Program-Master/issues">https://github.com/Skeyelab/MIDI-Program-Master/issues</a>
+    </p>
+    <p>version 1.0</p>
 </html>
