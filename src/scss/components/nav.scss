@@ -1,0 +1,14 @@
+nav {
+  &.navbar {
+    .navbar {
+      &-brand {
+        img {
+          width: 2.5rem;
+        }
+        h1 {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
