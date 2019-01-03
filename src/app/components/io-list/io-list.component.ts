@@ -9,6 +9,8 @@ import * as WebMidi from 'webmidi';
 export class IoListComponent implements OnInit {
   inputs = [];
   outputs = [];
+  error: string;
+  enabled: boolean;
 
   constructor() {
   }
@@ -19,17 +21,19 @@ export class IoListComponent implements OnInit {
 
   enable() {
     WebMidi.enable(err => {
-      err ? this.showError(err) : this.setInOut();
+      err ? this.showError(err) : this.success();
     },)
   }
 
-  setInOut() {
+  success() {
+    this.enabled = true;
     this.inputs = WebMidi.inputs;
     this.outputs = WebMidi.outputs;
   }
 
   showError(err) {
-    alert(err);
+    this.enabled = false;
+    this.error = err;
   }
 
 }

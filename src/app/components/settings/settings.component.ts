@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ChannelSetting} from "../../../models/channel-setting";
 
 @Component({
   selector: 'app-settings',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
+  settings: Array<ChannelSetting>;
 
   constructor() { }
 

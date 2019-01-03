@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="enabled">
   <div class="col-12 col-md-6">
     <table class="table table-striped">
       <thead>
@@ -26,5 +26,12 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+<div class="row" *ngIf="!enabled && error">
+  <div class="col-12 col-md-6">
+    <div class="alert-danger">
+      <p>{{error}}</p>
+    </div>
   </div>
 </div>
