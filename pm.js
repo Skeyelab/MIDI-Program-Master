@@ -74,7 +74,33 @@ function sendPCtoOutput(output, channel, programchange, bankselectcoarse, bankse
         output.sendControlChange(32, bankselectfine, channel);
         output.sendProgramChange(programchange, channel);
     }
+}
 
+function sendCCstoOutput(output, channel) {
+    for (let [controller, value] of Object.entries(storedSettings["channel"+channel].ccs)) {
+        if (value != null) {
+            output.sendControlChange(parseInt(controller), value, channel);
+            console.log(`Sending CC #${controller} the value of ${value} on channel ${channel}`);
+        }
+    }
+}
+
+function sendPCandCCsToOutput(output, channel, programchange, bankselectcoarse, bankselectfine) {
+    if (programchange != undefined) {
+        console.log(`Sending MSB the value of ${bankselectcoarse} on channel ${channel} to ${output.name}`);
+        output.sendControlChange(0, bankselectcoarse, channel);
+        console.log(`Sending LSB the value of ${bankselectfine} on channel ${channel} to ${output.name}`);
+        output.sendControlChange(32, bankselectfine, channel);
+        console.log(`Sending PC the value of ${programchange} on channel ${channel} to ${output.name}`);
+        output.sendProgramChange(programchange, channel);
+    }
+
+    for (let [controller, value] of Object.entries(storedSettings["channel"+channel].ccs)) {
+        if (value != null) {
+            output.sendControlChange(parseInt(controller), value, channel);
+            console.log(`Sending CC #${controller} the value of ${value} on channel ${channel} to ${output.name}`);
+        }
+    }
 }
 
 function sendStoredSettingsToAllOuts() {
@@ -96,7 +122,9 @@ function sendStoredSettingsToAllOuts() {
             if (settings[key]["programchange"] != null) {
                 programchange = storedSettings[key]["programchange"];
             };
-            sendPCtoOutput(output, channel, programchange, bankselectcourse, bankselectfine);
+            sendPCandCCsToOutput(output, channel, programchange, bankselectcourse, bankselectfine);
+            //sendPCtoOutput(output, channel, programchange, bankselectcourse, bankselectfine);
+            //sendCCstoOutput(output, channel);
         }
     });
 }
@@ -132,6 +160,11 @@ function updateStoredSettingsGrid() {
         $(`#stored_bankselectcoarse_${i}`).text(storedSettings["channel" + i]["bankselectcourse"]);
         $(`#stored_bankselectfine_${i}`).text(storedSettings["channel" + i]["bankselectfine"]);
         $(`#stored_pc_${i}`).text(storedSettings["channel" + i]["programchange"]);
+        if (storedSettings["channel" + i]["ccs"].length > 0) {
+           $(`#stored_cc_${i}`).css("background-color", "#7db548");
+        } else {
+            $(`#stored_cc_${i}`).css("background-color", "#bbb");
+        }
     }
 }
 
@@ -158,12 +191,15 @@ function createListeners() {
                 default:
                     console.log("Received 'controlchange' message.", e);
                     settings["channel" + e.channel]["ccs"][e.controller.number] = e.value;
+                    $("#cc_"+e.channel).css("background-color", "#7db548");
             }
         });
 
         input.addListener("programchange", "all", function (e) {
             $(`#pc_${e.channel}`).text(e.value);
+            $("#cc_"+e.channel).css("background-color", "#bbb");
             settings["channel" + e.channel]["programchange"] = e.value;
+            settings["channel" + e.channel]["ccs"] = [];
             updateSettingsDisplay();
             console.log(`Updating PC for ch: ${e.channel} to ${e.value}`);
         });
