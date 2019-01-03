@@ -6,6 +6,11 @@
         <td>Inputs</td>
       </tr>
       </thead>
+      <tbody>
+      <tr *ngFor="let input of inputs">
+        <td>{{input.name}}</td>
+      </tr>
+      </tbody>
     </table>
   </div>
   <div class="col-12 col-md-6">
@@ -15,6 +20,11 @@
         <td>Outputs</td>
       </tr>
       </thead>
+      <tbody>
+        <tr *ngFor="let output of outputs">
+          <td>{{output.name}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as WebMidi from 'webmidi';
 
 @Component({
@@ -10,11 +10,26 @@ export class IoListComponent implements OnInit {
   inputs = [];
   outputs = [];
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
-    WebMidi.enable();
+    this.enable();
+  }
+
+  enable() {
+    WebMidi.enable(err => {
+      err ? this.showError(err) : this.setInOut();
+    },)
+  }
+
+  setInOut() {
     this.inputs = WebMidi.inputs;
     this.outputs = WebMidi.outputs;
   }
+
+  showError(err) {
+    alert(err);
+  }
+
 }
