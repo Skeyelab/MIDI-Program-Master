@@ -61,7 +61,7 @@ function init() {
 }
 
 function updateSettingsDisplay() {
-    $("#settings").text(JSON.stringify(settings, null, 1));
+    $("#settings-stored").text(JSON.stringify(settings, null, 1));
 }
 
 const sleep = (milliseconds) => {
@@ -208,10 +208,10 @@ function createListeners() {
 
 $(document).ready(function () {
     $('#settingsButton').click(function () {
-        if ($('#settings').css('visibility') == 'hidden')
-            $('#settings').css('visibility', 'visible');
+        if ($('#settings-stored').css('visibility') == 'hidden')
+            $('#settings-stored').css('visibility', 'visible');
         else
-            $('#settings').css('visibility', 'hidden');
+            $('#settings-stored').css('visibility', 'hidden');
     });
 
     $('#storebtn').click(function () {
