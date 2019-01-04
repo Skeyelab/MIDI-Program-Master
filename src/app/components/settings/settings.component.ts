@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ChannelSetting} from "../../../models/channel-setting";
 
 @Component({
@@ -6,12 +6,34 @@ import {ChannelSetting} from "../../../models/channel-setting";
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnChanges {
   settings: Array<ChannelSetting>;
+  amountOfChannel = 16;
+  @Input() io: any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.hasOwnProperty('io')) {
+      this.generateChannels();
+    }
   }
 
+  generateChannels() {
+    this.settings = [];
+    Array.from(Array(this.amountOfChannel).keys()).map(index => {
+      this.settings.push({
+        channel: index + 1
+      });
+    });
+    this.enableListeners();
+  }
+
+  enableListeners() {
+    if(this.io) {
+      this.io.inputs.forEach(input => {
+
+      });
+    }
+  }
 }

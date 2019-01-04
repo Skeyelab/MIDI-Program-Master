@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import * as WebMidi from 'webmidi';
+import {ChannelSetting} from "../../../models/channel-setting";
 
 @Component({
   selector: 'app-io-list',
@@ -11,6 +12,7 @@ export class IoListComponent implements OnInit {
   outputs = [];
   error: string;
   enabled: boolean;
+  @Output() webMidiActive: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
   }
@@ -29,6 +31,10 @@ export class IoListComponent implements OnInit {
     this.enabled = true;
     this.inputs = WebMidi.inputs;
     this.outputs = WebMidi.outputs;
+    this.webMidiActive.emit({
+      inputs: this.inputs,
+      outputs: this.outputs,
+    });
   }
 
   showError(err) {

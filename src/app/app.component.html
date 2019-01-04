@@ -8,7 +8,7 @@
         When restore the snapshot, it will be sent to all available MIDI outputs.</p>
     </div>
   </div>
-  <app-io-list></app-io-list>
+  <app-io-list (webMidiActive)="webMidiActive($event)"></app-io-list>
   <div class="row">
     <div class="col-12">
       <p>
@@ -18,8 +18,9 @@
       </p>
     </div>
   </div>
+  <app-settings [io]="io"></app-settings>
 </div>
-<footer class="container-fluid fixed-bottom bg-light">
+<footer class="container-fluid">
   <p>
     Please report bugs here: <a href="https://github.com/Skeyelab/MIDI-Program-Master/issues" target="_blank">https://github.com/Skeyelab/MIDI-Program-Master/issues</a>
   </p>
