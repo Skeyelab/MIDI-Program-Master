@@ -1,0 +1,45 @@
+<div class="row mb-3" *ngIf="settings && settings.length > 0">
+  <div class="col-12">
+    <h2>Stored settings</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr><th scope="col"></th>
+        <ng-container *ngFor="let setting of settings">
+          <th scope="col" class="text-center font-weight-bold" [ngClass]="{'bg-success text-white': setting.active}">
+            {{setting.channel}}
+          </th>
+        </ng-container>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row" class="text-center font-weight-bold">PC</th>
+        <td class="text-center" *ngFor="let setting of settings" [ngClass]="{'bg-success text-white': setting.active}">
+          {{setting.programChange}}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-center font-weight-bold">MSB</th>
+        <td class="text-center" *ngFor="let setting of settings" [ngClass]="{'bg-success text-white': setting.active}">
+          {{setting.bankSelectCoarse}}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-center font-weight-bold">LSB</th>
+        <td class="text-center" *ngFor="let setting of settings" [ngClass]="{'bg-success text-white': setting.active}">
+          {{setting.bankSelectFine}}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-center font-weight-bold">CC</th>
+        <td class="text-center" *ngFor="let setting of settings" [ngClass]="{'bg-success text-white': setting.active}">
+          {{setting.ccs.length}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary mr-2" (click)="restoreSettings()">Restore Settings</button>
+    <button class="btn btn-secondary mr-2" (click)="downloadJson()">Export JSON file</button>
+    <button class="btn btn-danger" (click)="reset()">Clear</button>
+  </div>
+</div>
