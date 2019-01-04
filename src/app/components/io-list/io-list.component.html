@@ -1,0 +1,40 @@
+<div class="row" *ngIf="enabled">
+  <div class="col-12">
+    <h2>IO</h2>
+  </div>
+  <div class="col-12 col-md-6">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Inputs</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let input of inputs">
+        <td>{{input.name}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-12 col-md-6">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Outputs</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let output of outputs">
+          <td>{{output.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row" *ngIf="!enabled && error">
+  <div class="col-12 col-md-6">
+    <div class="alert-danger">
+      <p>{{error}}</p>
+    </div>
+  </div>
+</div>

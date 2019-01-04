@@ -1,0 +1,34 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <p>What is this? This is a browser based MIDI Program Change 'scratch pad' for your whole studio.
+        It will display program change data for all available MIDI inputs in real time, allow you store a snapshot, then
+        restore it.
+        When restore the snapshot, it will be sent to all available MIDI outputs.</p>
+      <p>
+        It uses <a href="http://djipco.github.io/webmidi/latest/classes/WebMidi.html" target="_blank">WebMidi.js</a> and
+        is running 100% in your browser. You can read the code on <a
+        href="https://github.com/Skeyelab/MIDI-Program-Master" target="_blank">GitHub</a> if you like.
+      </p>
+    </div>
+  </div>
+  <app-io-list (webMidiActive)="webMidiActive($event)"></app-io-list>
+  <app-settings-live [ioConfig]="ioConfig" [settings]="restoredSettings" (settingsStored)="storedSettings = $event"></app-settings-live>
+  <app-settings-stored [ioConfig]="ioConfig" [settings]="storedSettings" (settingsRestored)="restoredSettings = $event"></app-settings-stored>
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-secondary" (click)="importJson()">Import JSON file</button>
+      <input #fileInput accept="application/json" type="file" name="settings" hidden (change)="fileChosen($event)"/>
+    </div>
+  </div>
+
+</div>
+<footer class="container-fluid">
+  <p>
+    Please report bugs here: <a href="https://github.com/Skeyelab/MIDI-Program-Master/issues" target="_blank">https://github.com/Skeyelab/MIDI-Program-Master/issues</a>
+  </p>
+  <p>
+    version 2.0
+  </p>
+</footer>
