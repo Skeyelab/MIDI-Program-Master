@@ -587,7 +587,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/fraa/Git/MIDI-Program-Master/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/edahl/Desktop/programmaster/src/main.ts */"./src/main.ts");
 
 
 /***/ })
