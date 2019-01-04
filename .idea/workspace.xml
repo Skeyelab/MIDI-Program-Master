@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe602af9-7480-41ef-adc5-2b76f20f7e33" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pm.js" beforeDir="false" afterPath="$PROJECT_DIR$/pm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/io-list/io-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/io-list/io-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/io-list/io-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/io-list/io-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/settings/settings.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/settings/settings.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/settings/settings.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/settings/settings.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/channel-setting.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/channel-setting.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,59 +25,59 @@
         <counts>
           <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.4" value="3" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="1" />
           <entry key="footer" value="1" />
-          <entry key="html" value="39" />
+          <entry key="html" value="48" />
           <entry key="ico" value="1" />
           <entry key="js" value="5" />
           <entry key="json" value="18" />
           <entry key="scss" value="16" />
-          <entry key="ts" value="59" />
+          <entry key="ts" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="1" />
-          <entry key="HTML" value="39" />
+          <entry key="HTML" value="48" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="15" />
           <entry key="JavaScript" value="5" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="16" />
-          <entry key="TypeScript" value="59" />
+          <entry key="TypeScript" value="64" />
           <entry key="tsconfig" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="2864" />
+          <entry key="html" value="3377" />
           <entry key="js" value="1" />
           <entry key="json" value="57" />
           <entry key="scss" value="579" />
-          <entry key="ts" value="6197" />
+          <entry key="ts" value="7232" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="2864" />
+          <entry key="HTML" value="3377" />
           <entry key="JSON" value="53" />
           <entry key="JavaScript" value="1" />
           <entry key="SCSS" value="579" />
-          <entry key="TypeScript" value="6197" />
+          <entry key="TypeScript" value="7232" />
           <entry key="tsconfig" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="Angular2LanguageService" value="5" />
+          <entry key="Angular2LanguageService" value="6" />
           <entry key="TypeScriptServerServiceImpl" value="1" />
         </counts>
       </usages-collector>
@@ -92,20 +85,68 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="615">
+              <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="91" selection-start-line="7" selection-start-column="91" selection-end-line="7" selection-end-column="91" />
+              <folding>
+                <element signature="e#0#56#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="76" selection-start-line="41" selection-start-column="76" selection-end-line="41" selection-end-column="76" />
+            <state>
+              <caret column="62" lean-forward="true" selection-start-column="62" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/components/settings-live/settings-live.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="39" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/components/settings-live/settings-live.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="101">
+              <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -163,15 +204,17 @@
         <option value="$PROJECT_DIR$/src/app/components/io-list/io-list.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/io-list/io-list.component.html" />
         <option value="$PROJECT_DIR$/src/app/components/settings/settings.component.html" />
-        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/src/app/components/settings-live/settings-live.component.html" />
         <option value="$PROJECT_DIR$/src/app/components/settings/settings.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/settings-stored/settings.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/app.component.html" />
-        <option value="$PROJECT_DIR$/src/app/app.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/settings-live/settings-live.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.html" />
+        <option value="$PROJECT_DIR$/src/app/components/settings-imported/settings-imported.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/components/settings-imported/settings-imported.component.html" />
+        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.html" />
       </list>
     </option>
   </component>
@@ -201,6 +244,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -281,7 +325,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -335,17 +378,18 @@
       <workItem from="1546557940109" duration="14844000" />
       <workItem from="1546573261011" duration="133000" />
       <workItem from="1546573416478" duration="15000" />
+      <workItem from="1546573793407" duration="2896000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21026000" />
+    <option name="totallyTimeSpent" value="23922000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1280" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -358,9 +402,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Demandware" order="9" />
-      <window_info anchor="bottom" id="TypeScript" order="10" visible="true" weight="0.32937685" />
+      <window_info anchor="bottom" id="TypeScript" order="10" weight="0.32937685" />
       <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.32937685" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32937685" />
+      <window_info anchor="bottom" id="Terminal" order="12" visible="true" weight="0.32937685" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -463,13 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/io-list/io-list.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/webmidi/webmidi.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="613">
@@ -481,27 +518,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="93" selection-start-line="6" selection-start-column="93" selection-end-line="6" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
@@ -519,31 +535,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/settings-live/settings-live.component.html">
+    <entry file="file://$PROJECT_DIR$/src/app/components/settings-imported/settings-imported.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/settings-imported/settings-imported.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="116" lean-forward="true" selection-start-line="7" selection-start-column="62" selection-end-line="7" selection-end-column="116" />
+          <caret line="7" column="91" selection-start-line="7" selection-start-column="91" selection-end-line="7" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/io-list/io-list.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/settings-live/settings-live.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="39" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/settings-live/settings-live.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+        <state relative-caret-position="101">
+          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="615">
+          <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/settings-stored/setting-stored.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="76" selection-start-line="41" selection-start-column="76" selection-end-line="41" selection-end-column="76" />
+        <state>
+          <caret column="62" lean-forward="true" selection-start-column="62" selection-end-column="62" />
         </state>
       </provider>
     </entry>

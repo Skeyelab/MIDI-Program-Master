@@ -1,25 +1,18 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ChannelSetting} from "../../../models/channel-setting";
+import * as FileSaver from "file-saver";
 
 @Component({
   selector: 'app-settings-stored',
   templateUrl: './setting-stored.component.html',
   styleUrls: ['./setting-stored.component.scss'],
 })
-export class SettingStoredComponent implements OnChanges{
+export class SettingStoredComponent {
   @Input() settings: Array<ChannelSetting> = [];
   @Input() ioConfig: any;
-  uri: string;
+  @Output() settingsRestored: EventEmitter<Array<ChannelSetting>> = new EventEmitter<Array<ChannelSetting>>();
 
   constructor() {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes.hasOwnProperty('settings')) {
-      if(this.settings) {
-        this.generateJsonUri();
-      }
-    }
   }
 
   restoreSettings() {
@@ -38,10 +31,16 @@ export class SettingStoredComponent implements OnChanges{
           output.sendControlChange(cc.number, cc.value, setting.channel);
         });
       });
+      this.settingsRestored.emit(this.settings);
     });
   }
 
-  generateJsonUri() {
-    this.uri = "data:application/json;charset=UTF-8," + encodeURIComponent(JSON.stringify(this.settings));
+  downloadJson() {
+    const blob = new Blob([JSON.stringify(this.settings)], {type: 'application/json;charset=utf-8'});
+    FileSaver.saveAs(blob, 'settings.json');
+  }
+
+  reset() {
+    this.settings = [];
   }
 }

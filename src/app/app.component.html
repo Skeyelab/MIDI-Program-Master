@@ -18,8 +18,15 @@
       </p>
     </div>
   </div>
-  <app-settings-live [ioConfig]="io" (settingsStored)="storedSettings = $event"></app-settings-live>
-  <app-settings-stored [ioConfig]="io" [settings]="storedSettings"></app-settings-stored>
+  <app-settings-live [ioConfig]="ioConfig" [settings]="restoredSettings" (settingsStored)="storedSettings = $event"></app-settings-live>
+  <app-settings-stored [ioConfig]="ioConfig" [settings]="storedSettings" (settingsRestored)="restoredSettings = $event"></app-settings-stored>
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-secondary" (click)="importJson()">Import JSON file</button>
+      <input #fileInput accept="application/json" type="file" name="settings" hidden (change)="fileChosen($event)"/>
+    </div>
+  </div>
+
 </div>
 <footer class="container-fluid">
   <p>
