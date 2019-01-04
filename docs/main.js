@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav></app-nav>\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <p>What is this? This is a browser based MIDI Program Change 'scratch pad' for your whole studio.\n        It will display program change data for all available MIDI inputs in real time, allow you store a snapshot, then\n        restore it.\n        When restore the snapshot, it will be sent to all available MIDI outputs.</p>\n      <p>\n        It uses <a href=\"http://djipco.github.io/webmidi/latest/classes/WebMidi.html\" target=\"_blank\">WebMidi.js</a> and\n        is running 100% in your browser. You can read the code on <a\n        href=\"https://github.com/Skeyelab/MIDI-Program-Master\" target=\"_blank\">GitHub</a> if you like.\n      </p>\n    </div>\n  </div>\n  <app-io-list (webMidiActive)=\"webMidiActive($event)\"></app-io-list>\n  <app-settings-live [ioConfig]=\"ioConfig\" [settings]=\"restoredSettings\" (settingsStored)=\"storedSettings = $event\"></app-settings-live>\n  <app-settings-stored [ioConfig]=\"ioConfig\" [settings]=\"storedSettings\" (settingsRestored)=\"restoredSettings = $event\"></app-settings-stored>\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <button class=\"btn btn-secondary\" (click)=\"importJson()\">Import JSON file</button>\n      <input #fileInput accept=\"application/json\" type=\"file\" name=\"settings\" hidden (change)=\"fileChosen($event)\"/>\n    </div>\n  </div>\n\n</div>\n<footer class=\"container-fluid\">\n  <p>\n    Please report bugs here: <a href=\"https://github.com/Skeyelab/MIDI-Program-Master/issues\" target=\"_blank\">https://github.com/Skeyelab/MIDI-Program-Master/issues</a>\n  </p>\n  <p>\n    version 2.0\n  </p>\n</footer>\n"
+module.exports = "<app-nav></app-nav>\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <p>What is this? This is a browser based MIDI Program Change 'scratch pad' for your whole studio.\n        It will display program change data for all available MIDI inputs in real time, allow you store a snapshot, then\n        restore it.\n        When restore the snapshot, it will be sent to all available MIDI outputs.</p>\n      <p>\n        It uses <a href=\"http://djipco.github.io/webmidi/latest/classes/WebMidi.html\" target=\"_blank\">WebMidi.js</a> and\n        is running 100% in your browser. You can read the code on <a\n        href=\"https://github.com/Skeyelab/MIDI-Program-Master\" target=\"_blank\">GitHub</a> if you like.\n      </p>\n    </div>\n  </div>\n  <app-io-list (webMidiActive)=\"webMidiActive($event)\"></app-io-list>\n  <app-settings-live [ioConfig]=\"ioConfig\" [settings]=\"restoredSettings\" (settingsStored)=\"storedSettings = $event\"></app-settings-live>\n  <app-settings-stored [ioConfig]=\"ioConfig\" [settings]=\"storedSettings\" (settingsRestored)=\"restoredSettings = $event\"></app-settings-stored>\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <button class=\"btn btn-secondary\" (click)=\"importJson()\">Import JSON file</button>\n      <input #fileInput accept=\"application/json\" type=\"file\" name=\"settings\" hidden (change)=\"fileChosen($event)\"/>\n    </div>\n  </div>\n\n</div>\n<footer class=\"container\">\n  <p>\n    <small>\n      Please report bugs here: <a href=\"https://github.com/Skeyelab/MIDI-Program-Master/issues\" target=\"_blank\">https://github.com/Skeyelab/MIDI-Program-Master/issues</a>\n    </small>\n  </p>\n  <p>\n    <small>Version 2.0</small>\n  </p>\n</footer>\n"
 
 /***/ }),
 
@@ -242,7 +242,7 @@ var IoListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-light bg-light fixed-top\">\n  <a class=\"navbar-brand\" href=\"/\">\n    <div class=\"row align-items-center\">\n      <div class=\"col-4\">\n        <img src=\"assets/images/apple-touch-icon.png\"/>\n      </div>\n      <div class=\"col-8\">\n        <h2>{{title}}</h2>\n      </div>\n    </div>\n  </a>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-light bg-light fixed-top\">\n  <div class=\"container\">\n    <a class=\"navbar-brand\" href=\"/\">\n      <div class=\"row align-items-center\">\n        <div class=\"col-4\">\n          <img src=\"assets/images/apple-touch-icon.png\"/>\n        </div>\n        <div class=\"col-8\">\n          <h2>{{title}}</h2>\n        </div>\n      </div>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -587,7 +587,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/edahl/Desktop/programmaster/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/fraa/Git/MIDI-Program-Master/src/main.ts */"./src/main.ts");
 
 
 /***/ })
