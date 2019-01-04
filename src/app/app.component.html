@@ -18,7 +18,8 @@
       </p>
     </div>
   </div>
-  <app-settings [io]="io"></app-settings>
+  <app-settings-live [ioConfig]="io" (settingsStored)="storedSettings = $event"></app-settings-live>
+  <app-settings-stored [ioConfig]="io" [settings]="storedSettings"></app-settings-stored>
 </div>
 <footer class="container-fluid">
   <p>

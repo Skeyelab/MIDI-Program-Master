@@ -1,0 +1,44 @@
+<div class="row mb-3" *ngIf="settings">
+  <div class="col-12">
+    <h2>Stored settings</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr><th scope="col"></th>
+        <ng-container *ngFor="let setting of settings">
+          <th scope="col" class="text-center font-weight-bold">
+            {{setting.channel}}
+          </th>
+        </ng-container>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row" class="text-center font-weight-bold">PC</th>
+        <td class="text-center" *ngFor="let setting of settings">
+          {{setting.programChange}}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-center font-weight-bold">MSB</th>
+        <td class="text-center" *ngFor="let setting of settings">
+          {{setting.bankSelectCoarse}}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-center font-weight-bold">LSB</th>
+        <td class="text-center" *ngFor="let setting of settings">
+          {{setting.bankSelectFine}}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-center font-weight-bold">CC</th>
+        <td class="text-center" *ngFor="let setting of settings">
+          {{setting.ccs.length}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <button *ngIf="!live" class="btn btn-secondary mr-2" (click)="restoreSettings()">Restore Settings</button>
+    <a class="btn-link" href="{{uri}}">Right click and save as JSON file</a>
+  </div>
+</div>

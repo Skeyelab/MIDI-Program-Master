@@ -6,4 +6,5 @@ export interface ChannelSetting {
   bankSelectFine?: number;
   programChange?: number;
   ccs?: Array<CcSetting>;
+  active?: boolean;
 }

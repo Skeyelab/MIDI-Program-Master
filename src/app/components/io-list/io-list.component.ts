@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import * as WebMidi from 'webmidi';
-import {ChannelSetting} from "../../../models/channel-setting";
 
 @Component({
   selector: 'app-io-list',

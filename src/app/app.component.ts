@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ChannelSetting} from "../models/channel-setting";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   io: any;
+  storedSettings: Array<ChannelSetting>;
 
   webMidiActive($event) {
     this.io = $event;
